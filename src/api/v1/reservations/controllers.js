@@ -24,6 +24,16 @@ const reservationController = {
       });
     }
   },
+
+  /**
+   * @desc Gets a single reservation with checkout time
+   * @param {object} req
+   * @param {object} res
+   */
+  getReservation(req, res) {
+    try {
+    } catch (error) {}
+  },
 };
 
 module.exports = reservationController;

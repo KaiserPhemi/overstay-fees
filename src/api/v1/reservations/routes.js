@@ -9,6 +9,7 @@ const reservationRoutes = express.Router();
 
 // routes
 reservationRoutes.route("/").get(reservationController.getAllReservations);
+reservationRoutes.route("/:id").get(reservationController.getReservation);
 
 
 module.exports = reservationRoutes;
