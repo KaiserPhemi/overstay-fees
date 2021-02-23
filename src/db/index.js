@@ -1,0 +1,38 @@
+module.exports = [
+  {
+    reservationId: 12000,
+    roomType: "deluxe",
+    customerId: 12323,
+    amountPaid: 230000,
+    status: "paid",
+    checkInTime: "2020-12-12 12:00",
+    checkOutTime: "2021-01-01 11:00",
+  },
+  {
+    reservationId: 12001,
+    roomType: "regular",
+    customerId: 12324,
+    amountPaid: 150000,
+    status: "paid",
+    checkInTime: "2020-12-12 12:00",
+    checkOutTime: "2021-01-01 11:00",
+  },
+  {
+    reservationId: 12002,
+    roomType: "palatial",
+    customerId: 12100,
+    amountPaid: 560000,
+    status: "paid",
+    checkInTime: "2020-12-12 12:00",
+    checkOutTime: "2021-01-01 11:00",
+  },
+  {
+    reservationId: 12003,
+    roomType: "regular",
+    customerId: 12323,
+    amountPaid: 200000,
+    status: "paid",
+    checkInTime: "2020-12-25 12:00",
+    checkOutTime: "2021-01-04 11:00",
+  },
+];

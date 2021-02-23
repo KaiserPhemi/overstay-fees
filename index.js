@@ -1,17 +1,18 @@
 // third-aprty libraries
 require("dotenv").config();
 const express = require("express");
+const roomRates = require("./src/constants");
 
 // routes
 const mainRoute = require("./src/api/v1");
-//
+
 const app = express();
 const PORT = process.env.PORT;
 
 // routes
 app.use("/api/v1", mainRoute);
 app.get("*", (req, res) => {
-  res.json({
+  res.status(200).json({
     message: "Welcome to the Hotel App",
   });
 });

@@ -1,14 +1,14 @@
 // third-aprty libraries
 const express = require("express");
 
+// controllers
+const reservationController = require('./controllers');
+
 // router
 const reservationRoutes = express.Router();
 
 // routes
-reservationRoutes.route("/").get((req, res) => {
-  res.json({
-    message: "All reservations retrieved",
-  });
-});
+reservationRoutes.route("/").get(reservationController.getAllReservations);
+
 
 module.exports = reservationRoutes;
