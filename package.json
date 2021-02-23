@@ -6,7 +6,8 @@
   "author": "KaiserPhemi <kaiser.phemi@protonmail.ch>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "test": ""
   },
   "dependencies": {
     "@joi/date": "^2.0.1",

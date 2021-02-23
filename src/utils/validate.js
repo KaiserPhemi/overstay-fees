@@ -9,6 +9,6 @@ const idSchema = Joi.number().integer().positive().required();
 /**
  * @desc Schema to validate checkout date
  */
-const dateSchema = Joi.date().format("YYYY-MM-DD");
+const dateSchema = Joi.date();
 
 module.exports = { idSchema, dateSchema };

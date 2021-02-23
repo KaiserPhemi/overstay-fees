@@ -2,8 +2,9 @@
 const allReservations = require("../../../db");
 
 // utils
-const getOverstayPeriod = require('../../../utils/overstay')
-const {idSchema, dateSchema} = require('../../../utils/validate')
+const getOverstayPeriod = require('../../../utils/overstay');
+const {idSchema, dateSchema} = require('../../../utils/validate');
+const getFees = require('../../../utils/getFees');
 
 /**
  * @desc Reservation controller
@@ -45,9 +46,9 @@ const reservationController = {
       });
     }
     const reservationId = Number(req.params.id);
-    const { clientCheckoutTime } = req.query;
+    const clientCheckoutTime = req.query.clientCheckoutTime || "";
     let dateError = await dateSchema.validate(clientCheckoutTime).error;
-    if (dateError || clientCheckoutTime === "") {
+    if (dateError) {
       return res.status(400).json({
         message: "Invalid date format.",
         error: dateError,
@@ -57,20 +58,46 @@ const reservationController = {
       const reservation = allReservations.find(
         (item) => item.reservationId === reservationId
       );
-      const { checkOutTime } = reservation;
-      // console.log(
-      //   "Extended hours",
-      //   getOverstayPeriod(checkOutTime, clientCheckoutTime)
-      // );
+      if (reservation === undefined) {
+        return res.status(404).json({
+          message: `Reservation with id: ${reservationId} does not exist.`,
+        });
+      }
+      const { checkOutTime, amountPaid, roomType } = reservation;
+      const overstayPeriod = getOverstayPeriod(
+        checkOutTime,
+        clientCheckoutTime
+      );
 
-      return res.status(200).json({
-        message: "Item retrieved succussfully.",
-        clientCheckoutTime,
+      if (overstayPeriod > 0 && typeof overstayPeriod=== 'number') {
+        let fees = getFees(
+          overstayPeriod,
+          amountPaid,
+          roomType,
+          clientCheckoutTime
+        ).toFixed(2);
+        fees = parseFloat(fees);
+
+        return res.status(201).json({
+          message: "Reservation retrieved succussfully.",
+          reservation,
+          clientCheckoutTime,
+          overstayPeriod: `${overstayPeriod} hours`,
+          overstayFees: fees,
+        });
+
+      } else {
+        return res.status(200).json({
+          message: "Reservation retrieved succussfully.",
+          reservation,
+        });
+      }     
+    } catch (error) {
+      return res.status(500).json({
+        message: "An error occur.",
+        error,
       });
-      // compare check out time
-      // calculate if longer
-      // do not calculate if it's not
-    } catch (error) {}
+    }
   },
 };
 

@@ -10,8 +10,8 @@ const parseISO = require("date-fns/parseISO");
  */
 module.exports = (checkOutTime, clientCheckOutTime) => {
   const overstayHours = differenceInHours(
-    parseISO(checkOutTime),
-    parseISO(clientCheckOutTime)
+    parseISO(clientCheckOutTime),
+    parseISO(checkOutTime)
   );
   return overstayHours;
-};
+};;;
