@@ -13,5 +13,5 @@ module.exports = (checkOutTime, clientCheckOutTime) => {
     parseISO(clientCheckOutTime),
     parseISO(checkOutTime)
   );
-  return overstayHours;
+  return Number(overstayHours);
 };;;

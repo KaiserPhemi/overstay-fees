@@ -68,8 +68,7 @@ const reservationController = {
         checkOutTime,
         clientCheckoutTime
       );
-
-      if (overstayPeriod > 0 && typeof overstayPeriod=== 'number') {
+      if (overstayPeriod > 0) {
         let fees = getFees(
           overstayPeriod,
           amountPaid,
@@ -85,7 +84,6 @@ const reservationController = {
           overstayPeriod: `${overstayPeriod} hours`,
           overstayFees: fees,
         });
-
       } else {
         return res.status(200).json({
           message: "Reservation retrieved succussfully.",

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "nodemon index.js",
-    "test": ""
+    "test": "mocha"
   },
   "dependencies": {
     "@joi/date": "^2.0.1",
