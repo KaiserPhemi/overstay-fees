@@ -7,6 +7,7 @@ const mainRoute = require("./src/api/v1");
 
 const app = express();
 const PORT = process.env.PORT;
+app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use("/api/v1", mainRoute);
