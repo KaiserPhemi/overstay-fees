@@ -1,9 +1,8 @@
-// third-party library
-const isWeekend = require("date-fns/isWeekend");
-const parseISO = require("date-fns/parseISO");
-
 // rates
 const roomRates = require("../constants");
+
+// utils
+const isWeekend = require("../utils/checkDay")
 
 /**
  * @desc Gets the amount payable for extended stay
@@ -16,22 +15,22 @@ const roomRates = require("../constants");
 module.exports = (overstayPeriod, amountPaid, roomType, clientCheckoutTime) => {
   switch (roomType) {
     case "regular":
-      if (isWeekend(parseISO(clientCheckoutTime))) {
+      if (isWeekend(clientCheckoutTime)) {
         return overstayPeriod * roomRates.REGULAR_WEEKEND * amountPaid;
       } else {
         return overstayPeriod * roomRates.REGULAR_WEEK_DAY * amountPaid;
       }
     case "deluxe":
-      if (isWeekend(parseISO(clientCheckoutTime))) {
-        return overstayPeriod * roomRates.DELUXE_WEEK_DAY * amountPaid;
-      } else {
+      if (isWeekend(clientCheckoutTime)) {
         return overstayPeriod * roomRates.DELUXE_WEEKEND * amountPaid;
+      } else {
+        return overstayPeriod * roomRates.DELUXE_WEEK_DAY * amountPaid;
       }
     case "palatial":
-      if (isWeekend(parseISO(clientCheckoutTime))) {
-        return overstayPeriod * roomRates.PALATIAL_WEEK_DAY * amountPaid;
-      } else {
+      if (isWeekend(clientCheckoutTime)) {
         return overstayPeriod * roomRates.PALATIAL_WEEKEND * amountPaid;
+      } else {
+        return overstayPeriod * roomRates.PALATIAL_WEEK_DAY * amountPaid;
       }
     default:
       return;

@@ -81,7 +81,7 @@ const reservationController = {
           message: "Reservation retrieved succussfully.",
           reservation,
           clientCheckoutTime,
-          overstayPeriod: `${overstayPeriod} hours`,
+          overstayPeriod: `${overstayPeriod} hour(s)`,
           overstayFees: fees,
         });
       } else {

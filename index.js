@@ -1,7 +1,6 @@
 // third-aprty libraries
 require("dotenv").config();
 const express = require("express");
-const roomRates = require("./src/constants");
 
 // routes
 const mainRoute = require("./src/api/v1");
